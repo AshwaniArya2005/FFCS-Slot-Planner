@@ -160,7 +160,7 @@ function App() {
     <div className="App">
       <h1 style={{ display: 'none' }}>FFCS Timetable Filler</h1>
       <div style={{ marginBottom: 16 }}>
-        <button onClick={addGreenBox}>Add Green Box</button>
+        <button onClick={addGreenBox}>Add a Slot</button>
         <button onClick={saveTimetable} style={{ marginLeft: 8 }}>Save</button>
         <button onClick={loadTimetable} style={{ marginLeft: 8 }}>Load</button>
       </div>
@@ -228,7 +228,7 @@ function App() {
           </table>
           {/* Pool of green boxes to drag from */}
           <div className="pool-container">
-            <h3>Green Box Pool</h3>
+            <h3>Slot Pool</h3>
             <Droppable droppableId="pool" direction="horizontal">
               {(provided) => (
                 <div
