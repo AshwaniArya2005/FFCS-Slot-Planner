@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { DragDropContext, Droppable, Draggable, DropResult } from 'react-beautiful-dnd';
+import { DragDropContext, Droppable, Draggable, DropResult } from '@hello-pangea/dnd';
 import './App.css';
 
 // Timetable slots as per your image (simplified for demo, expand as needed)
@@ -154,11 +154,6 @@ function App() {
   // Edit box text
   const handleBoxTextChange = (id: string, text: string) => {
     setGreenBoxes(prev => ({ ...prev, [id]: { ...prev[id], text } }));
-  };
-
-  // Helper to check if a box is in any slot
-  const isBoxInTimetable = (id: string) => {
-    return Object.values(timetable).some(slot => slot.find(b => b.id === id));
   };
 
   return (
