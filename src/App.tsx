@@ -252,7 +252,7 @@ function App() {
                     </Draggable>
                   ))}
                   {pool.length === 0 && (
-                    <div style={{ color: '#bbb', fontStyle: 'italic', padding: '8px 0' }}>No green boxes in pool</div>
+                    <div style={{ color: '#bbb', fontStyle: 'italic', padding: '8px 0' }}>No slots in pool</div>
                   )}
                   {provided.placeholder}
                 </div>
