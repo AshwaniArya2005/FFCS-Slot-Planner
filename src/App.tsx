@@ -166,8 +166,15 @@ function App() {
 
   return (
     <div className="App">
-      <h1 style={{ display: 'none' }}>FFCS Timetable Filler</h1>
-      <div style={{ marginBottom: 16 }}>
+      <h1 style={{ 
+        marginBottom: '20px',
+        color: '#2c3e50',
+        fontSize: '2.2em',
+        fontWeight: '600',
+        textAlign: 'center',
+        textShadow: '1px 1px 2px rgba(0,0,0,0.1)'
+      }}>FFCS Slot Planner</h1>
+      <div style={{ marginBottom: 12 }}>
         <button onClick={addGreenBox}>Add a Slot</button>
         <button onClick={saveTimetable} style={{ marginLeft: 8 }}>Save</button>
         <button onClick={loadTimetable} style={{ marginLeft: 8 }}>Load</button>
@@ -236,7 +243,7 @@ function App() {
           </table>
           {/* Pool of green boxes to drag from */}
           <div className="pool-container">
-            <h3 style={{ marginTop: 0, marginBottom: 12 }}>Available Slots</h3>
+            <h3 style={{ marginTop: 0, marginBottom: 8 }}>Available Slots</h3>
             <Droppable droppableId="pool" direction="horizontal">
               {(provided) => (
                 <div
@@ -274,24 +281,24 @@ function App() {
       
       {/* Notes Section */}
       <div style={{ 
-        marginTop: '32px', 
+        marginTop: '20px', 
         width: '100%', 
         maxWidth: '800px', 
-        padding: '20px',
+        padding: '16px',
         backgroundColor: '#fff',
         borderRadius: '12px',
         boxShadow: '0 2px 12px rgba(0,0,0,0.08)',
         marginLeft: 'auto',
         marginRight: 'auto'
       }}>
-        <h3 style={{ marginTop: 0, marginBottom: '16px' }}>Notes</h3>
+        <h3 style={{ marginTop: 0, marginBottom: '12px' }}>Notes</h3>
         <textarea
           value={notes}
           onChange={(e) => setNotes(e.target.value)}
           placeholder="Add your notes here..."
           style={{
             width: '100%',
-            minHeight: '150px',
+            minHeight: '120px',
             padding: '12px',
             borderRadius: '8px',
             border: '1px solid #b5c2d6',
