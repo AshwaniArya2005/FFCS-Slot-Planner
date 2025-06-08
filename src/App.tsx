@@ -280,7 +280,9 @@ function App() {
         padding: '20px',
         backgroundColor: '#fff',
         borderRadius: '12px',
-        boxShadow: '0 2px 12px rgba(0,0,0,0.08)'
+        boxShadow: '0 2px 12px rgba(0,0,0,0.08)',
+        marginLeft: 'auto',
+        marginRight: 'auto'
       }}>
         <h3 style={{ marginTop: 0, marginBottom: '16px' }}>Notes</h3>
         <textarea
@@ -295,7 +297,8 @@ function App() {
             border: '1px solid #b5c2d6',
             fontSize: '1em',
             fontFamily: 'inherit',
-            resize: 'vertical'
+            resize: 'vertical',
+            boxSizing: 'border-box'
           }}
         />
       </div>
