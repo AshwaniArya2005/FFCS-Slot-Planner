@@ -35,6 +35,10 @@ interface TimetableState {
   [slotId: string]: GreenBox[];
 }
 
+interface Notes {
+  text: string;
+}
+
 const initialTimetable: { [slotId: string]: string[] } = {};
 days.forEach(day => {
   times.forEach(time => {
@@ -52,6 +56,8 @@ function App() {
   // Green box data
   const [greenBoxes, setGreenBoxes] = useState<{ [id: string]: GreenBox }>({});
   const [boxCounter, setBoxCounter] = useState(1);
+  // Notes state
+  const [notes, setNotes] = useState<string>('');
 
   // On mount, initialize pool with all box ids
   useEffect(() => {
@@ -70,6 +76,7 @@ function App() {
       pool,
       greenBoxes,
       boxCounter,
+      notes,
     };
     const blob = new Blob([JSON.stringify(data)], { type: 'application/json' });
     const url = URL.createObjectURL(blob);
@@ -96,6 +103,7 @@ function App() {
           setPool(parsed.pool);
           setGreenBoxes(parsed.greenBoxes);
           setBoxCounter(parsed.boxCounter);
+          setNotes(parsed.notes || '');
         } catch (err) {
           alert('Invalid file!');
         }
@@ -228,7 +236,7 @@ function App() {
           </table>
           {/* Pool of green boxes to drag from */}
           <div className="pool-container">
-            <h3>Slot Pool</h3>
+            <h3 style={{ marginTop: 0, marginBottom: 12 }}>Available Slots</h3>
             <Droppable droppableId="pool" direction="horizontal">
               {(provided) => (
                 <div
@@ -245,15 +253,17 @@ function App() {
                           {...provided.dragHandleProps}
                           className="green-box"
                         >
-                          {greenBoxes[boxId]?.text || <span style={{ color: '#fff', opacity: 0.7 }}>Drag me</span>}
+                          <input
+                            className="box-input"
+                            value={greenBoxes[boxId]?.text || ''}
+                            onChange={e => handleBoxTextChange(boxId, e.target.value)}
+                            placeholder="Type..."
+                          />
                           <button className="remove-btn" onClick={() => removeGreenBox(boxId)}>×</button>
                         </div>
                       )}
                     </Draggable>
                   ))}
-                  {pool.length === 0 && (
-                    <div style={{ color: '#bbb', fontStyle: 'italic', padding: '8px 0' }}>No slots in pool</div>
-                  )}
                   {provided.placeholder}
                 </div>
               )}
@@ -261,6 +271,34 @@ function App() {
           </div>
         </div>
       </DragDropContext>
+      
+      {/* Notes Section */}
+      <div style={{ 
+        marginTop: '32px', 
+        width: '100%', 
+        maxWidth: '800px', 
+        padding: '20px',
+        backgroundColor: '#fff',
+        borderRadius: '12px',
+        boxShadow: '0 2px 12px rgba(0,0,0,0.08)'
+      }}>
+        <h3 style={{ marginTop: 0, marginBottom: '16px' }}>Notes</h3>
+        <textarea
+          value={notes}
+          onChange={(e) => setNotes(e.target.value)}
+          placeholder="Add your notes here..."
+          style={{
+            width: '100%',
+            minHeight: '150px',
+            padding: '12px',
+            borderRadius: '8px',
+            border: '1px solid #b5c2d6',
+            fontSize: '1em',
+            fontFamily: 'inherit',
+            resize: 'vertical'
+          }}
+        />
+      </div>
     </div>
   );
 }
